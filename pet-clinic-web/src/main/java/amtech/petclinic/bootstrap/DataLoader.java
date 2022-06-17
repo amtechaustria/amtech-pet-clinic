@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+import java.sql.SQLOutput;
+
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -62,6 +64,12 @@ public class DataLoader implements CommandLineRunner {
         owner2.setAddress("122 firestreet");
         owner2.setCity("Miami");
         owner2.setTelephone("421234412");
+        Pet fionasCat = new Pet();
+        fionasCat.setName("kitty cat");
+        fionasCat.setOwner(owner2);
+        fionasCat.setBirthDate(LocalDate.now());
+        fionasCat.setPetType(savedCatType);
+        owner2.getPets().add(fionasCat);
 
         ownerService.save(owner2);
 
@@ -80,6 +88,7 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Loaded Vets.....");
+        System.out.println("Look, it is working");
 
     }
 }
