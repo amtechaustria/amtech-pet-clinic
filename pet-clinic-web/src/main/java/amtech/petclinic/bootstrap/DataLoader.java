@@ -1,6 +1,7 @@
 package amtech.petclinic.bootstrap;
 
 import amtech.petclinic.model.Owner;
+import amtech.petclinic.model.Pet;
 import amtech.petclinic.model.PetType;
 import amtech.petclinic.model.Vet;
 import amtech.petclinic.services.OwnerService;
@@ -8,6 +9,8 @@ import amtech.petclinic.services.PetTypeService;
 import amtech.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -39,12 +42,26 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
+        owner1.setAddress("122 firestreet");
+        owner1.setCity("Miami");
+        owner1.setTelephone("421234412");
+
+        Pet mikesPet = new Pet();
+        mikesPet.setPetType(savedDogType);
+        mikesPet.setOwner(owner1);
+        mikesPet.setBirthDate(LocalDate.now());
+        mikesPet.setName("Rosco");
+        owner1.getPets().add(mikesPet);
+
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
         owner2.setLastName("Testme");
+        owner2.setAddress("122 firestreet");
+        owner2.setCity("Miami");
+        owner2.setTelephone("421234412");
 
         ownerService.save(owner2);
 
